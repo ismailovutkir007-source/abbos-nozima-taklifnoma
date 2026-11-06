@@ -70,8 +70,8 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
 
 /* names */
 .garland{width:min(300px,76vw);height:auto}
-.names{font-size:clamp(54px,15vw,76px)}
-.names .amp{display:block;font-size:.5em;color:var(--rose-deep);margin:2px 0}
+.names{font-size:clamp(40px,11.5vw,64px);white-space:nowrap}
+.names .amp{display:inline-block;font-size:.6em;color:var(--rose-deep);margin:0 .14em;vertical-align:.08em}
 .names-text{font-family:var(--f-display);font-style:italic;font-size:21px;line-height:1.55;color:#998878;max-width:30ch}
 
 /* date */
@@ -111,6 +111,13 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
 
 /* signature */
 .family{font-size:clamp(46px,13vw,60px)}
+
+/* script toggle: Lotin / Кирилл */
+.lang{position:fixed;z-index:25;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));display:flex;gap:2px;padding:3px;
+  border:1px solid var(--line);border-radius:999px;background:rgba(252,246,238,.94);box-shadow:0 4px 14px rgba(120,90,60,.12)}
+.lang button{font:700 11px/1 var(--f-body);letter-spacing:.06em;color:var(--muted);background:transparent;border:0;border-radius:999px;padding:9px 13px;cursor:pointer;transition:background .2s,color .2s}
+.lang button[aria-pressed="true"]{background:var(--sage-dark);color:#fff}
+.lang button:focus-visible{outline:2px solid var(--rose-deep);outline-offset:2px}
 
 /* music toggle */
 .music{position:fixed;z-index:15;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;
@@ -227,27 +234,32 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
 </svg>
 
 <!-- envelope cover -->
-<div class="cover" id="cover" role="button" tabindex="0" aria-label="Taklifnomani ochish uchun bosing">
+<div class="cover" id="cover" role="button" tabindex="0" aria-label="Taklifnomani ochish uchun bosing" data-c-aria="Таклифномани очиш учун босинг">
   <span class="spark" style="left:13%;top:23%"><svg><use href="#star4"/></svg></span>
   <span class="spark" style="right:16%;top:71%"><svg><use href="#star4"/></svg></span>
   <span class="spark" style="left:20%;top:77%;width:9px;height:9px"><svg><use href="#star4"/></svg></span>
   <span class="spark" style="right:24%;top:16%;width:10px;height:10px"><svg><use href="#star4"/></svg></span>
   <div class="env" aria-hidden="true">
     <div class="env-back"></div>
-    <div class="letter"><small>Nikoh to'yi</small><b>Abbos &amp; Nozima</b><small>09.12.2026</small></div>
+    <div class="letter"><small data-c="Никоҳ тўйи">Nikoh to'yi</small><b data-c="Аббос &amp; Нозима">Abbos &amp; Nozima</b><small>09.12.2026</small></div>
     <div class="flap flap-l"></div><div class="flap flap-r"></div><div class="flap flap-b"></div><div class="flap flap-t"></div>
     <div class="grain"></div>
-    <div class="emboss">A &amp; N</div>
+    <div class="emboss" data-c="А &amp; Н">A &amp; N</div>
     <div class="ribbon"></div>
-    <div class="seal"><span>A&amp;N</span></div>
+    <div class="seal"><span data-c="А&amp;Н">A&amp;N</span></div>
     <div class="bow"><svg viewBox="0 0 100 50"><defs><linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf7"/><stop offset="1" stop-color="#ddd3c0"/></linearGradient></defs>
       <path d="M50 26C38 6 14 4 12 18s20 16 38 8z" fill="url(#rb)" stroke="#d3c8b3" stroke-width="1"/>
       <path d="M50 26C62 6 86 4 88 18s-20 16-38 8z" fill="url(#rb)" stroke="#d3c8b3" stroke-width="1"/>
       <path d="M48 28l-8 22M52 28l7 20" stroke="#e9e1d0" stroke-width="5" stroke-linecap="round"/>
       <ellipse cx="50" cy="26" rx="6" ry="7" fill="#f6f1e6" stroke="#d3c8b3" stroke-width="1"/></svg></div>
-    <div class="tag"><div class="tag-in"><small>Hurmatli</small><b>mehmonimiz</b></div></div>
+    <div class="tag"><div class="tag-in"><small data-c="Ҳурматли">Hurmatli</small><b data-c="меҳмонимиз">mehmonimiz</b></div></div>
   </div>
-  <p class="hint">Ochish uchun bosing</p>
+  <p class="hint" data-c="Очиш учун босинг">Ochish uchun bosing</p>
+</div>
+
+<div class="lang" role="group" aria-label="Yozuv / Ёзув">
+  <button type="button" data-lang="lat" aria-pressed="true">Lotin</button>
+  <button type="button" data-lang="cyr" aria-pressed="false">Кирилл</button>
 </div>
 
 <div class="sparkles" id="sparkles" aria-hidden="true"></div>
@@ -284,11 +296,11 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
         </g>
         <g fill="#e3a3a4" opacity=".6"><circle cx="150" cy="140" r="1.6"/><circle cx="252" cy="130" r="1.4"/><circle cx="140" cy="290" r="1.4"/><circle cx="262" cy="300" r="1.6"/><circle cx="176" cy="320" r="1.2"/><circle cx="230" cy="340" r="1.4"/></g>
       </svg>
-      <p class="label" style="margin-top:6px">Aziz mehmonlar</p>
-      <h1 class="hero-title">Taklifnoma</h1>
+      <p class="label" style="margin-top:6px" data-c="Азиз меҳмонлар">Aziz mehmonlar</p>
+      <h1 class="hero-title" data-c="Таклифнома">Taklifnoma</h1>
       <div class="divider"><svg><use href="#heart"/></svg></div>
-      <p>Nikoh to'yimizga marhamat!</p>
-      <div class="scroll-hint"><span class="label" style="font-size:10px">Pastga suring</span><span class="mouse"></span></div>
+      <p data-c="Никоҳ тўйимизга марҳамат!">Nikoh to'yimizga marhamat!</p>
+      <div class="scroll-hint"><span class="label" style="font-size:10px" data-c="Пастга суринг">Pastga suring</span><span class="mouse"></span></div>
     </div>
   </section>
 
@@ -299,9 +311,9 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
         <path d="M8 46C60 30 100 54 150 40s92 8 142 4" fill="none" stroke="#7b9881" stroke-width="1.4" stroke-linecap="round"/>
         <g id="garlandFlowers"></g>
       </svg>
-      <p class="label lined">Nikoh to'yi</p>
-      <h1 class="names">Abbos<span class="amp">&amp;</span>Nozima</h1>
-      <p class="names-text">Sizni farzandlarimiz Abbos va Nozimaning nikoh to'yi munosabati bilan dasturxonimiz mehmoni bo'lishingizga taklif etamiz.</p>
+      <p class="label lined" data-c="Никоҳ тўйи">Nikoh to'yi</p>
+      <h1 class="names"><span data-c="Аббос">Abbos</span><span class="amp">&amp;</span><span data-c="Нозима">Nozima</span></h1>
+      <p class="names-text" data-c="Сизни фарзандларимиз Аббос ва Нозиманинг никоҳ тўйи муносабати билан дастурхонимиз меҳмони бўлишингизга таклиф этамиз.">Sizni farzandlarimiz Abbos va Nozimaning nikoh to'yi munosabati bilan dasturxonimiz mehmoni bo'lishingizga taklif etamiz.</p>
     </div>
   </section>
 
@@ -321,17 +333,17 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
         <use href="#leaf" x="32" y="80" width="18" height="9" transform="rotate(-50 41 84)"/>
         <use href="#rose" x="34" y="56" width="32" height="32"/>
       </svg>
-      <p class="label">To'y sanasi</p>
-      <p class="date-line">9-dekabr, Chorshanba</p>
+      <p class="label" data-c="Тўй санаси">To'y sanasi</p>
+      <p class="date-line" data-c="9-декабрь, Чоршанба">9-dekabr, Chorshanba</p>
       <div class="cal-wrap">
         <svg class="cal-sprig a" viewBox="0 0 120 120" aria-hidden="true"><use href="#sprig"/></svg>
         <div class="cal-card">
-          <h3>Dekabr 2026</h3>
-          <div class="cal" id="cal" aria-label="Dekabr 2026 kalendari, 9-sana belgilangan"></div>
+          <h3 data-c="Декабрь 2026">Dekabr 2026</h3>
+          <div class="cal" id="cal" aria-label="Dekabr 2026 kalendari, 9-sana belgilangan" data-c-aria="Декабрь 2026 календари, 9-сана белгиланган"></div>
         </div>
         <svg class="cal-sprig b" viewBox="0 0 120 120" aria-hidden="true" style="filter:hue-rotate(95deg) saturate(.6)"><use href="#sprig"/></svg>
       </div>
-      <p class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>18:00</b><span>— Boshlanish vaqti</span></p>
+      <p class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>18:00</b><span data-c="— Бошланиш вақти">— Boshlanish vaqti</span></p>
     </div>
   </section>
 
@@ -353,13 +365,13 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
         <use href="#leaf" x="48" y="82" width="18" height="9" transform="rotate(30 57 86)"/>
         <use href="#rose" x="58" y="62" width="26" height="26"/>
       </svg>
-      <h2 class="section-title">To'ygacha</h2>
-      <p class="soft">Sizni ko'rishni sabrsizlik bilan kutamiz</p>
+      <h2 class="section-title" data-c="Тўйгача">To'ygacha</h2>
+      <p class="soft" data-c="Сизни кўришни сабрсизлик билан кутамиз">Sizni ko'rishni sabrsizlik bilan kutamiz</p>
       <div class="count">
-        <div><b id="d">00</b><small>Kun</small></div>
-        <div><b id="h">00</b><small>Soat</small></div>
-        <div><b id="m">00</b><small>Daqiqa</small></div>
-        <div><b id="s">00</b><small>Soniya</small></div>
+        <div><b id="d">00</b><small data-c="Кун">Kun</small></div>
+        <div><b id="h">00</b><small data-c="Соат">Soat</small></div>
+        <div><b id="m">00</b><small data-c="Дақиқа">Daqiqa</small></div>
+        <div><b id="s">00</b><small data-c="Сония">Soniya</small></div>
       </div>
     </div>
   </section>
@@ -374,12 +386,12 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
         <path d="M60 438h280" stroke="#7b9881" stroke-width="5" stroke-linecap="round"/>
         <g class="miniFlowers"></g>
       </svg>
-      <p class="label">To'y manzili</p>
-      <p class="venue-place">Sirdaryo viloyati, Sirdaryo tumani</p>
-      <h2 class="venue-name">“Dunyo” to'yxonasi</h2>
+      <p class="label" data-c="Тўй манзили">To'y manzili</p>
+      <p class="venue-place" data-c="Сирдарё вилояти, Сирдарё тумани">Sirdaryo viloyati, Sirdaryo tumani</p>
+      <h2 class="venue-name" data-c="“Дунё” тўйхонаси">“Dunyo” to'yxonasi</h2>
       <a class="btn-outline" href="https://yandex.uz/maps/-/CXronZog" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
-        Xaritada ko'rish
+        <span data-c="Харитада кўриш">Xaritada ko'rish</span>
       </a>
     </div>
   </section>
@@ -400,19 +412,19 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
         <use href="#rose" x="84" y="58" width="24" height="24"/>
         <use href="#rose" x="65" y="52" width="30" height="30"/>
       </svg>
-      <p class="label">Samimiy tilak</p>
-      <p class="soft">Hurmat bilan:</p>
-      <h2 class="family">Usmonovlar oilasi</h2>
+      <p class="label" data-c="Самимий тилак">Samimiy tilak</p>
+      <p class="soft" data-c="Ҳурмат билан:">Hurmat bilan:</p>
+      <h2 class="family" data-c="Аликуловлар оиласи">Alikulovlar oilasi</h2>
       <div class="divider"><svg><use href="#heart"/></svg></div>
-      <p class="soft" style="max-width:30ch">Ushbu to'yga tashrif buyurib, bizga katta sharaf baxsh etasiz. Sizning ishtirokingiz bu kunning eng qimmatli sovg'asidir.</p>
-      <p class="serif-note">Kelishingiz bizga ulkan quvonch bag'ishlaydi</p>
+      <p class="soft" style="max-width:30ch" data-c="Ушбу тўйга ташриф буюриб, бизга катта шараф бахш этасиз. Сизнинг иштирокингиз бу куннинг энг қимматли совғасидир.">Ushbu to'yga tashrif buyurib, bizga katta sharaf baxsh etasiz. Sizning ishtirokingiz bu kunning eng qimmatli sovg'asidir.</p>
+      <p class="serif-note" data-c="Келишингиз бизга улкан қувонч бағишлайди">Kelishingiz bizga ulkan quvonch bag'ishlaydi</p>
     </div>
   </section>
 </main>
 
 <script>
 (function(){
-  var NS='http://www.w3.org/2000/svg';
+  var NS='http://www.w3.org/2000/svg',LANG='lat';
   function use(id,x,y,w,h,rot){
     var u=document.createElementNS(NS,'use');
     u.setAttribute('href','#'+id);u.setAttribute('x',x-w/2);u.setAttribute('y',y-h/2);
@@ -459,12 +471,14 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
     e.innerHTML='<svg viewBox="0 0 20 20"><use href="#star4"/></svg>';sp.appendChild(e)});
 
   // calendar: Dec 2026
-  var cal=document.getElementById('cal'),html='';
-  ['Du','Se','Ch','Pa','Ju','Sh','Ya'].forEach(function(x){html+='<span class="h">'+x+'</span>'});
-  var first=(new Date(2026,11,1).getDay()+6)%7;
-  for(var i=0;i<first;i++)html+='<span></span>';
-  for(var d=1;d<=31;d++)html+='<span'+(d===9?' class="on"':'')+'>'+d+'</span>';
-  cal.innerHTML=html;
+  var cal=document.getElementById('cal');
+  function renderCal(){var html='';
+    (LANG==='cyr'?['Ду','Се','Чо','Па','Жу','Ша','Як']:['Du','Se','Ch','Pa','Ju','Sh','Ya']).forEach(function(x){html+='<span class="h">'+x+'</span>'});
+    var first=(new Date(2026,11,1).getDay()+6)%7;
+    for(var i=0;i<first;i++)html+='<span></span>';
+    for(var d=1;d<=31;d++)html+='<span'+(d===9?' class="on"':'')+'>'+d+'</span>';
+    cal.innerHTML=html;}
+  renderCal();
 
   // pocket watch shows current time
   function hands(){var n=new Date(),h=n.getHours()%12,m=n.getMinutes();
@@ -483,7 +497,8 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
   // music
   var song=document.getElementById('song'),mbtn=document.getElementById('musicBtn');
   song.volume=.6;
-  function setMuted(m){mbtn.classList.toggle('muted',m);mbtn.setAttribute('aria-label',m?'Musiqani yoqish':"Musiqani o'chirish")}
+  function setMuted(m){mbtn.classList.toggle('muted',m);var c=LANG==='cyr';
+    mbtn.setAttribute('aria-label',m?(c?'Мусиқани ёқиш':'Musiqani yoqish'):(c?'Мусиқани ўчириш':"Musiqani o'chirish"))}
   function play(){var p=song.play();if(p&&p.then)p.then(function(){setMuted(false)}).catch(function(){setMuted(true)});else setMuted(false)}
   mbtn.addEventListener('click',function(){if(song.paused)play();else{song.pause();setMuted(true)}});
 
@@ -533,6 +548,25 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
     else if(k==='End'){e.preventDefault();go(pages.length-1)}
   });
   cover.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+
+  // script toggle: Lotin / Кирилл
+  var tEls=[].slice.call(document.querySelectorAll('[data-c]')),aEls=[].slice.call(document.querySelectorAll('[data-c-aria]'));
+  var langBtns=[].slice.call(document.querySelectorAll('.lang button'));
+  tEls.forEach(function(e){e.setAttribute('data-l',e.textContent)});
+  aEls.forEach(function(e){e.setAttribute('data-l-aria',e.getAttribute('aria-label'))});
+  function setLang(l){LANG=l;var c=l==='cyr';
+    tEls.forEach(function(e){e.textContent=e.getAttribute(c?'data-c':'data-l')});
+    aEls.forEach(function(e){e.setAttribute('aria-label',e.getAttribute(c?'data-c-aria':'data-l-aria'))});
+    document.documentElement.lang=c?'uz-Cyrl':'uz';
+    document.title=c?'Аббос ва Нозима':'Abbos va Nozima';
+    langBtns.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-lang')===l?'true':'false')});
+    renderCal();setMuted(mbtn.classList.contains('muted'));
+    try{localStorage.setItem('lang',l)}catch(e){}}
+  langBtns.forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'))})});
+  var startLang=null;
+  var q=location.search.match(/[?&]lang=(cyr|kir|lat)/);if(q)startLang=q[1]==='lat'?'lat':'cyr';
+  if(!startLang){try{startLang=localStorage.getItem('lang')}catch(e){}}
+  if(startLang==='cyr')setLang('cyr');
 })();
 </script>
 
