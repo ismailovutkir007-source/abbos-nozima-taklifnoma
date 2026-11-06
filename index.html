@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="preload" as="image" href="konvert.jpg">
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -179,6 +180,15 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
 .cover.opening .letter{transform:translateY(-62%)}
 .cover.opening .hint{opacity:0;transition:opacity .3s}
 
+/* photo envelope */
+.cover{background:#ecb0c0}
+.env-photo{position:relative;width:min(560px,94vw,calc(68svh * 1280 / 1169));transition:transform 1.1s cubic-bezier(.3,.7,.2,1),opacity .9s ease .15s}
+.env-photo img{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(180deg,transparent,#000 7%,#000 90%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(180deg,transparent,#000 7%,#000 90%,transparent);mask-composite:intersect}
+.cover .hint{color:#8a4a5a}
+.cover .spark{color:#fff;opacity:.85}
+.cover.opening .env-photo{transform:scale(1.12);opacity:0}
+@media (prefers-reduced-motion:no-preference){.env-photo img{animation:bob 6s ease-in-out infinite}}
+
 @media (prefers-reduced-motion:no-preference){
   .spark,.sparkles i{animation:twinkle 3.4s ease-in-out infinite}
   .spark:nth-child(2),.sparkles i:nth-child(3n){animation-delay:1.1s}
@@ -240,21 +250,7 @@ h1,h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;co
   <span class="spark" style="right:16%;top:71%"><svg><use href="#star4"/></svg></span>
   <span class="spark" style="left:20%;top:77%;width:9px;height:9px"><svg><use href="#star4"/></svg></span>
   <span class="spark" style="right:24%;top:16%;width:10px;height:10px"><svg><use href="#star4"/></svg></span>
-  <div class="env" aria-hidden="true">
-    <div class="env-back"></div>
-    <div class="letter"><small data-c="Никоҳ тўйи">Nikoh to'yi</small><b data-c="Аббосбек &amp; Нозимахон">Abbosbek &amp; Nozimaxon</b><small>09.12.2026</small></div>
-    <div class="flap flap-l"></div><div class="flap flap-r"></div><div class="flap flap-b"></div><div class="flap flap-t"></div>
-    <div class="grain"></div>
-    <div class="emboss" data-c="А &amp; Н">A &amp; N</div>
-    <div class="ribbon"></div>
-    <div class="seal"><span data-c="А&amp;Н">A&amp;N</span></div>
-    <div class="bow"><svg viewBox="0 0 100 50"><defs><linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf7"/><stop offset="1" stop-color="#ddd3c0"/></linearGradient></defs>
-      <path d="M50 26C38 6 14 4 12 18s20 16 38 8z" fill="url(#rb)" stroke="#d3c8b3" stroke-width="1"/>
-      <path d="M50 26C62 6 86 4 88 18s-20 16-38 8z" fill="url(#rb)" stroke="#d3c8b3" stroke-width="1"/>
-      <path d="M48 28l-8 22M52 28l7 20" stroke="#e9e1d0" stroke-width="5" stroke-linecap="round"/>
-      <ellipse cx="50" cy="26" rx="6" ry="7" fill="#f6f1e6" stroke="#d3c8b3" stroke-width="1"/></svg></div>
-    <div class="tag"><div class="tag-in"><small data-c="Ҳурматли">Hurmatli</small><b data-c="меҳмонимиз">mehmonimiz</b></div></div>
-  </div>
+  <div class="env-photo" aria-hidden="true"><img src="konvert.jpg" alt="" width="1280" height="1169" fetchpriority="high" decoding="async"></div>
   <p class="hint" data-c="Очиш учун босинг">Ochish uchun bosing</p>
 </div>
 
